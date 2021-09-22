@@ -1,5 +1,7 @@
 <?php
 
+use App\Jobs\SendEmail;
+use App\Mail\SendEmailTest;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('send-email', function () {
+    $data['email'] = "derrickmbugua50@gmail.com";
+    dispatch(new SendEmail($data))->onQueue('processing');
 });
