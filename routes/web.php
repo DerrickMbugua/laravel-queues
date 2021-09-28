@@ -21,5 +21,6 @@ Route::get('/', function () {
 
 Route::get('send-email', function () {
     $data['email'] = "derrickmbugua50@gmail.com";
-    dispatch(new SendEmail($data))->onQueue('processing');
+   SendEmail::dispatch($data)->delay(now()->addSeconds(5));
+  //  dispatch(new SendEmail($data))->onQueue('processing');
 });
